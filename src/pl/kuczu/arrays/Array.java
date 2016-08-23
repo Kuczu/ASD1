@@ -68,8 +68,6 @@ public class Array {
     }
 
     public void del_Dupl(){
-        //int currPosition = 0;
-
         for(int currPosition = 0; currPosition <= CurrPosition; currPosition++){
             long temp = Array[currPosition];
 
