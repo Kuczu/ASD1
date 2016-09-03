@@ -3,9 +3,9 @@ package pl.kuczu.arrays;
 import java.util.Random;
 
 public class Array {
-    private int Size;
-    private long Array[];
-    private int CurrPosition;
+    protected int Size;
+    protected long Array[];
+    protected int CurrPosition;
 
     public Array(int size){
         Size = size;
