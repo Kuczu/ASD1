@@ -40,6 +40,7 @@ public class SortedArray {
         CurrPosition = Size - 1;
     }
 
+    // Contain redundant algorithm LE and GE - depends on exercise conditions
     public int find_count(long val){
         int start;
         int end = CurrPosition;
@@ -97,19 +98,137 @@ public class SortedArray {
         return 0;
     }
 
+    public int find_LE(long val){
+        int start = 0;
+        int end = CurrPosition;
+        int middle = (start + end) / 2;
+        int idxExistValRight = -1;
+
+        //last right position
+        while(start <= end){
+            if(val < Array[middle]){
+                end = middle - 1;
+                middle = (start + end) / 2;
+            }
+            else if(val > Array[middle]){
+                start = middle + 1;
+                middle = (start + end) / 2;
+            }
+            else{ // ==
+                start = middle + 1;
+                idxExistValRight = middle;
+                middle = (start + end) / 2;
+            }
+        }
+
+        return idxExistValRight + 1;
+    }
+
+    public int find_GE(long val){
+        int start = 0;
+        int end = CurrPosition;
+        int middle = (start + end) / 2;
+        int idxExistValLeft = -1;
+
+        //last left position
+        while(start <= end){
+            if(val < Array[middle]){
+                end = middle - 1;
+                middle = (start + end) / 2;
+            }
+            else if(val > Array[middle]){
+                start = middle + 1;
+                middle = (start + end) / 2;
+            }
+            else{ // ==
+                end = middle - 1;
+                idxExistValLeft = middle;
+                middle = (start + end) / 2;
+            }
+        }
+
+        if(idxExistValLeft < 0){
+            return 0;
+        }
+
+        return Size - idxExistValLeft;
+    }
+
+    void delDup(){
+        if (Array.length < 2){
+            return;
+        }
+
+        int j = 0;
+        int i = 1;
+
+        while (i < Size) {
+            if (Array[i] == Array[j]) {
+                i++;
+            } else {
+                j++;
+                Array[j] = Array[i];
+                i++;
+            }
+        }
+
+        for(i = j + 1; i < Size; i++){
+            Array[i] = 0;
+        }
+    }
+
+    int bin_search(long val){
+        return find_LE(val) - 1;
+    }
+
+    int interpol_search(long val){
+        int low = 0;
+        int upp = Size - 1;
+        int currentIdx;
+
+        while((val >= Array[low]) && (val <= Array[upp])){
+            currentIdx = low + ((int)val - (int)Array[low]) * (upp - low) / ((int)Array[upp] - (int)Array[low]);
+
+            if(Array[currentIdx] == val){
+                return currentIdx;
+            }
+            else if(val < Array[currentIdx]){
+                upp = currentIdx - 1;
+            }
+            else{
+                low = currentIdx + 1;
+            }
+        }
+
+        return -1;
+    }
+
+    void printArray(){
+        for(int i = 0; i < Size; i++){
+            System.out.print(Array[i] + " ");
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args){
         Scanner input = new Scanner(System.in);
         SortedArray SA = new SortedArray(20);
 
-        for(int i = 0; i < SA.getSize(); i++){
-            System.out.print(SA.getValue(i) + " ");
+        SA.printArray();
+
+        long x = input.nextLong();
+        while(x != -1){
+            System.out.println("Count: " + SA.find_count(x));
+            System.out.println("LE: " + SA.find_LE(x));
+            System.out.println("GE: " + SA.find_GE(x));
+            System.out.println("Interpol Search: " + SA.interpol_search(x));
+
+            x = input.nextLong();
         }
+
         System.out.println();
-
-        while(true){
-            long x = input.nextLong();
-
-            System.out.print(SA.find_count(x) + " ");
-        }
+        SA.printArray();
+        SA.delDup();
+        SA.printArray();
     }
 }
