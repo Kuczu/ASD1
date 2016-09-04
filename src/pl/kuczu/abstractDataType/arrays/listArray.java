@@ -15,10 +15,6 @@ public class listArray {
         return !((idx > lastIdx) || (idx < 0));
     }
 
-    private void printError(String err){
-        System.out.println(err);
-    }
-
     public int first(){
         return 0;
     }
@@ -51,10 +47,10 @@ public class listArray {
 
     public void insert(long value, int idx){
         if(lastIdx >= maxSize){
-            printError("Lista pełna!");
+            System.out.println("Lista pełna!");
         }
         else if(!isPositionExists(idx)){
-            printError("Pozycja " + idx + " nie istnieje!");
+            System.out.println("Pozycja " + idx + " nie istnieje!");
         }
         else{
             moveListElemToRight(idx);
@@ -66,10 +62,10 @@ public class listArray {
 
     public void delete(int idx){
         if(lastIdx == 0){
-            printError("Lista jest pusta!");
+            System.out.println("Lista jest pusta!");
         }
         else if(!isPositionExists(idx)){
-            printError("Pozycja " + idx + " nie istnieje!");
+            System.out.println("Pozycja " + idx + " nie istnieje!");
         }
         else{
             moveListElemToLeft(idx);
@@ -80,7 +76,7 @@ public class listArray {
 
     public void printList(){
         if(lastIdx == 0){
-            printError("Lista jest pusta!");
+            System.out.println("Lista jest pusta!");
         }
         else{
             for(int i = 0; i < lastIdx; i++){
@@ -92,7 +88,7 @@ public class listArray {
 
     public long retValFromPos(int idx){
         if(!isPositionExists(idx)){
-            printError("Pozycja " + idx + " nie istnieje!");
+            System.out.println("Pozycja " + idx + " nie istnieje!");
             return -1;
         }
         else{
@@ -102,7 +98,7 @@ public class listArray {
 
     public int nextIdx(int idx){
         if((idx > lastIdx - 1) || (idx < 0)){
-            printError("Pozycja " + idx + " nie istnieje!");
+            System.out.println("Pozycja " + idx + " nie istnieje!");
             return -1;
         }
 
@@ -111,7 +107,7 @@ public class listArray {
 
     public int prevIdx(int idx){
         if((idx > lastIdx) || (idx < 1)){
-            printError("Pozycja " + idx + " nie istnieje!");
+            System.out.println("Pozycja " + idx + " nie istnieje!");
             return -1;
         }
 
