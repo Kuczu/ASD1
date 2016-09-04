@@ -121,7 +121,6 @@ public class linkedList {
 
         if(searchNode == null){
             System.out.println("Nie znaleziono szukanego węzla o kluczu: " + searchKey);
-            return;
         }
         else if(searchNode == first){
             deleteFirst();
