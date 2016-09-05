@@ -38,7 +38,7 @@ public class QueueArray { //FIFO
     public long deQueue(){ // pop
         if(isEmpty()){
             System.out.println("Kolejka jest pusta!");
-            return -1;
+            return -1; // exception need
         }
 
         long tmp = queue[front];
