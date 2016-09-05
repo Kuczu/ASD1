@@ -1,5 +1,5 @@
 package pl.kuczu.abstractDataType.arrays;
 
 //TODO
-public class doubleQueueArray {
+public class PriorityQueueArray {
 }

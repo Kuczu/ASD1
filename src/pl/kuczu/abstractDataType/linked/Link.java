@@ -1,11 +1,11 @@
 package pl.kuczu.abstractDataType.linked;
 
-public class link {
+public class Link {
     int value;
-    link next;
-    link prev;
+    Link next;
+    Link prev;
 
-    public link(int value) {
+    public Link(int value) {
         this.value = value;
         this.next = null;
         this.prev = null;

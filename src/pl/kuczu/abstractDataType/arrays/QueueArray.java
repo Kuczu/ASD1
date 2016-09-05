@@ -1,12 +1,12 @@
 package pl.kuczu.abstractDataType.arrays;
 
-public class queueArray {
+public class QueueArray {
     private int maxSize;
     private long queue[];
     private int front;
     private int rear;
 
-    public queueArray(int maxSize){
+    public QueueArray(int maxSize){
         this.maxSize = maxSize;
         queue = new long[maxSize];
         front = 0;

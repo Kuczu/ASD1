@@ -1,11 +1,11 @@
 package pl.kuczu.abstractDataType.arrays;
 
-public class stackArray {
+public class StackArray {
     private int maxSize;
     private long stack[];
     private int top;
 
-    public stackArray(int maxSize) {
+    public StackArray(int maxSize) {
         this.maxSize = maxSize;
         stack = new long[maxSize];
         top = maxSize;

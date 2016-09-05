@@ -1,19 +1,19 @@
 package pl.kuczu.abstractDataType.linked;
 
 //double linked list, without head and tail, is not cycle ll
-public class linkedList {
-    private link first;
-    private link last;
+public class LinkedList {
+    private Link first;
+    private Link last;
 
-    public linkedList() {
+    public LinkedList() {
         this.first = null;
         this.last = null;
     }
 
     public void insertFirst(int val){
-        link newNode = first;
+        Link newNode = first;
 
-        first = new link(val);
+        first = new Link(val);
 
         first.next = newNode;
 
@@ -26,9 +26,9 @@ public class linkedList {
     }
 
     public void insertLast(int val){
-        link newNode = last;
+        Link newNode = last;
 
-        last = new link(val);
+        last = new Link(val);
 
         last.prev = newNode;
 
@@ -41,7 +41,7 @@ public class linkedList {
     }
 
     public void displayForward(){
-        link node = first;
+        Link node = first;
 
         while(node != null){
             System.out.print(node.value + " ");
@@ -51,7 +51,7 @@ public class linkedList {
     }
 
     public void displayBackward(){
-        link node = last;
+        Link node = last;
 
         while(node != null){
             System.out.print(node.value + " ");
@@ -60,8 +60,8 @@ public class linkedList {
         System.out.println();
     }
 
-    public link locateNode(int searchKey){
-        link node = first;
+    public Link locateNode(int searchKey){
+        Link node = first;
 
         while(node != null && node.value != searchKey){
             node = node.next;
@@ -70,8 +70,8 @@ public class linkedList {
     }
 
     public void insertAfter(int val, int searchKey){
-        link newNode = new link(val);
-        link beforeNode = locateNode(searchKey);
+        Link newNode = new Link(val);
+        Link beforeNode = locateNode(searchKey);
 
         if(beforeNode == null){
             System.out.println("Nie znaleziono szukanego węzla o kluczu: " + searchKey);
@@ -117,7 +117,7 @@ public class linkedList {
     }
 
     public void deleteKey(int searchKey){
-        link searchNode = locateNode(searchKey);
+        Link searchNode = locateNode(searchKey);
 
         if(searchNode == null){
             System.out.println("Nie znaleziono szukanego węzla o kluczu: " + searchKey);
@@ -136,7 +136,7 @@ public class linkedList {
 
     //Hardcoded tests FTW :P
     public static void main(String [] args){
-        linkedList LL = new linkedList();
+        LinkedList LL = new LinkedList();
 
         for(int i = 9; i >= 0; i--){
             //LL.insertFirst(i);
@@ -159,7 +159,7 @@ public class linkedList {
         for(int i = 0; i < 10; i++){
             LL.deleteFirst();
             LL.deleteLast();
-            System.out.print("Ford: ");
+            System.out.print("Forw: ");
             LL.displayForward();
             System.out.print("Back: ");
             LL.displayBackward();
@@ -174,14 +174,14 @@ public class linkedList {
         LL.insertAfter(99, 5);
         LL.insertAfter(777, 8);
 
-        System.out.print("Ford: ");
+        System.out.print("Forw: ");
         LL.displayForward();
         System.out.print("Back: ");
         LL.displayBackward();
 
         LL.deleteKey(777);
 
-        System.out.print("Ford: ");
+        System.out.print("Forw: ");
         LL.displayForward();
         System.out.print("Back: ");
         LL.displayBackward();

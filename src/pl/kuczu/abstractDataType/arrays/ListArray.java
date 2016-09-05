@@ -1,11 +1,11 @@
 package pl.kuczu.abstractDataType.arrays;
 
-public class listArray {
+public class ListArray {
     private int maxSize;
     private long list[];
     private int lastIdx;
 
-    public listArray(int maxSize) {
+    public ListArray(int maxSize) {
         this.maxSize = maxSize;
         this.list = new long[maxSize];
         this.lastIdx = 0;
