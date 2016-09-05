@@ -10,6 +10,18 @@ public class LinkedList {
         this.last = null;
     }
 
+    public Link getFirst() {
+        return first;
+    }
+
+    public Link getLast() {
+        return last;
+    }
+
+    public boolean isEmpty(){
+        return first == null;
+    }
+
     public void insertFirst(int val){
         Link newNode = first;
 
