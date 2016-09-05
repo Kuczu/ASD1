@@ -1,6 +1,6 @@
 package pl.kuczu.abstractDataType.arrays;
 
-public class QueueArray {
+public class QueueArray { //FIFO
     private int maxSize;
     private long queue[];
     private int front;
@@ -25,7 +25,7 @@ public class QueueArray {
         return position(rear) == front;
     }
 
-    public void enQueue(long value){
+    public void enQueue(long value){ // push
         if(isFull()){
             System.out.println("Kolejka jest pełna!");
         }
@@ -35,7 +35,7 @@ public class QueueArray {
         }
     }
 
-    public long deQueue(){
+    public long deQueue(){ // pop
         if(isEmpty()){
             System.out.println("Kolejka jest pusta!");
             return -1;
