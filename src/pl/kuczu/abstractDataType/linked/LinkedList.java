@@ -290,6 +290,48 @@ public class LinkedList {
         }
     }
 
+    public void insertToOrderedList(int value){
+        if(first == null){ // empty ll
+            insertFirst(value);
+            return;
+        }
+
+        Link node;
+
+        if(!isReversed){
+            node = first;
+        }
+        else{
+            node = last;
+        }
+
+        while(node != null){
+            if(node.value == value){
+                insertAfter(value, node.value);
+                return;
+            }
+            else if(node.value > value){
+                if(node.prev != null && !isReversed){
+                    insertAfter(value, node.prev.value);
+                }
+                else if(node.next != null && isReversed){
+                    insertAfter(value, node.next.value);
+                }
+                else{
+                    insertFirst(value);
+                }
+                return;
+            }
+
+            if(!isReversed){
+                node = node.next;
+            }
+            else{
+                node = node.prev;
+            }
+        }
+    }
+
     //Hardcoded tests FTW :P
     public static void main(String [] args){
         LinkedList LL = new LinkedList();
