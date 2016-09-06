@@ -32,7 +32,7 @@ public class LinkedList {
         last = nodeBuff;
     }
 
-    private void insertFirstMethod(int val, Link first){
+    private Link insertFirstMethod(int val, Link first){
         Link newNode = first;
 
         first = new Link(val);
@@ -45,9 +45,11 @@ public class LinkedList {
         else{
             newNode.prev = first;
         }
+
+        return first;
     }
 
-    private void insertLastMethod(int val, Link last){
+    private Link insertLastMethod(int val, Link last){
         Link newNode = last;
 
         last = new Link(val);
@@ -60,23 +62,25 @@ public class LinkedList {
         else{
             newNode.next = last;
         }
+
+        return last;
     }
 
     public void insertFirst(int val){
         if(!isReversed){
-            insertFirstMethod(val, first);
+            first = insertFirstMethod(val, first);
         }
         else{
-            insertLastMethod(val, first);
+            first = insertLastMethod(val, first);
         }
     }
 
     public void insertLast(int val){
         if(!isReversed){
-            insertLastMethod(val, last);
+            last = insertLastMethod(val, last);
         }
         else{
-            insertFirstMethod(val, last);
+            last = insertFirstMethod(val, last);
         }
     }
 
@@ -220,6 +224,57 @@ public class LinkedList {
         }
     }
 
+    public Link[] findLongestNondecrasingList(){
+        if(first == null){ // empty ll
+            System.out.println("Lista jest pusta!");
+            return new Link[]{null, null};
+        }
+        else if(last == first){ // only one node
+            return new Link[]{first, last};
+        }
+        else if(!isReversed){
+            int nodesCount = 1;
+            int prevNodesCount = 1;
+            Link currentNode = first.next;
+            Link firstNode = first;
+            Link lastNode = first;
+
+            Link nodes[] = new Link[2];
+            /*nodes[0] = firstNode;
+            nodes[1] = lastNode;*/
+
+            while(currentNode != null){
+                if(lastNode.value <= currentNode.value){
+                    lastNode = currentNode;
+                    nodesCount++;
+                    currentNode = currentNode.next;
+                }
+                else{
+                    if(nodesCount >= prevNodesCount){
+                        nodes[0] = firstNode;
+                        nodes[1] = lastNode;
+                        prevNodesCount = nodesCount;
+                    }
+
+                    firstNode = currentNode;
+                    lastNode = currentNode;
+                    nodesCount = 1;
+                    currentNode = currentNode.next;
+                }
+            }
+
+            if(nodesCount >= prevNodesCount){
+                nodes[0] = firstNode;
+                nodes[1] = lastNode;
+            }
+
+            return nodes;
+        }
+        else{
+            return new Link[]{null, null};
+        }
+    }
+
     //Hardcoded tests FTW :P
     public static void main(String [] args){
         LinkedList LL = new LinkedList();
@@ -278,5 +333,25 @@ public class LinkedList {
         LL.displayForward();
         System.out.print("Back: ");
         LL.displayBackward();
+
+        for(int i = 0; i < 15; i++){
+            //LL.insertLast(i + 100);
+            LL.insertLast(i + 200);
+        }
+
+        for(int i = 2; i < 8; i++){
+            LL.deleteKey(i);
+        }
+
+        LL.insertAfter(800, 0);
+        LL.displayForward();
+
+        Link nodes[] = LL.findLongestNondecrasingList();
+        Link node = nodes[0];
+
+        while(node != nodes[1].next){
+            System.out.print(node.value + " ");
+            node = node.next;
+        }
     }
 }
