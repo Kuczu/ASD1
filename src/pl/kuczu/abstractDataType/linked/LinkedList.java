@@ -4,10 +4,12 @@ package pl.kuczu.abstractDataType.linked;
 public class LinkedList {
     private Link first;
     private Link last;
+    private Boolean isReversed;
 
     public LinkedList() {
         this.first = null;
         this.last = null;
+        this.isReversed = false;
     }
 
     public Link getFirst() {
@@ -22,7 +24,15 @@ public class LinkedList {
         return first == null;
     }
 
-    public void insertFirst(int val){
+    public void reverseList(){ // reversing at O1
+        isReversed = true;
+
+        Link nodeBuff = first;
+        first = last;
+        last = nodeBuff;
+    }
+
+    private void insertFirstMethod(int val, Link first){
         Link newNode = first;
 
         first = new Link(val);
@@ -37,7 +47,7 @@ public class LinkedList {
         }
     }
 
-    public void insertLast(int val){
+    private void insertLastMethod(int val, Link last){
         Link newNode = last;
 
         last = new Link(val);
@@ -52,7 +62,25 @@ public class LinkedList {
         }
     }
 
-    public void displayForward(){
+    public void insertFirst(int val){
+        if(!isReversed){
+            insertFirstMethod(val, first);
+        }
+        else{
+            insertLastMethod(val, first);
+        }
+    }
+
+    public void insertLast(int val){
+        if(!isReversed){
+            insertLastMethod(val, last);
+        }
+        else{
+            insertFirstMethod(val, last);
+        }
+    }
+
+    private void displayForwardMethod(Link first){
         Link node = first;
 
         while(node != null){
@@ -62,7 +90,7 @@ public class LinkedList {
         System.out.println();
     }
 
-    public void displayBackward(){
+    private void displayBackwardMethod(Link last){
         Link node = last;
 
         while(node != null){
@@ -72,8 +100,33 @@ public class LinkedList {
         System.out.println();
     }
 
+    public void displayForward(){
+        if(!isReversed){
+            displayForwardMethod(first);
+        }
+        else{
+            displayBackwardMethod(first);
+        }
+    }
+
+    public void displayBackward(){
+        if(!isReversed){
+            displayBackwardMethod(last);
+        }
+        else{
+            displayForwardMethod(last);
+        }
+    }
+
     public Link locateNode(int searchKey){
-        Link node = first;
+        Link node;
+
+        if(!isReversed){
+            node = first;
+        }
+        else{
+            node = last;
+        }
 
         while(node != null && node.value != searchKey){
             node = node.next;
@@ -82,7 +135,6 @@ public class LinkedList {
     }
 
     public void insertAfter(int val, int searchKey){
-        Link newNode = new Link(val);
         Link beforeNode = locateNode(searchKey);
 
         if(beforeNode == null){
@@ -90,13 +142,27 @@ public class LinkedList {
             return;
         }
 
-        newNode.prev = beforeNode;
-        newNode.next = beforeNode.next;
+        Link newNode = new Link(val);
 
-        beforeNode.next = newNode;
+        if(!isReversed){
+            newNode.prev = beforeNode;
+            newNode.next = beforeNode.next;
 
-        if(newNode.next != null){
-            newNode.next.prev = newNode;
+            beforeNode.next = newNode;
+
+            if(newNode.next != null){
+                newNode.next.prev = newNode;
+            }
+        }
+        else{
+            newNode.next = beforeNode;
+            newNode.prev = beforeNode.prev;
+
+            beforeNode.prev = newNode;
+
+            if(newNode.prev != null){
+                newNode.prev.next = newNode;
+            }
         }
     }
 
@@ -108,9 +174,13 @@ public class LinkedList {
             last = null;
             first = null;
         }
-        else{
+        else if(!isReversed){
             first = first.next;
             first.prev = null;
+        }
+        else{
+            first = first.prev;
+            first.next = null;
         }
     }
 
@@ -122,9 +192,13 @@ public class LinkedList {
             last = null;
             first = null;
         }
-        else{
+        else if(!isReversed){
             last = last.prev;
             last.next = null;
+        }
+        else{
+            last = last.next;
+            last.prev = null;
         }
     }
 
