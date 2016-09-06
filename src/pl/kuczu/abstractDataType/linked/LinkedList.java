@@ -25,7 +25,7 @@ public class LinkedList {
     }
 
     public void reverseList(){ // reversing at O1
-        isReversed = true;
+        isReversed = !isReversed;
 
         Link nodeBuff = first;
         first = last;
