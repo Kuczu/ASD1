@@ -232,22 +232,34 @@ public class LinkedList {
         else if(last == first){ // only one node
             return new Link[]{first, last};
         }
-        else if(!isReversed){
+        else{
             int nodesCount = 1;
             int prevNodesCount = 1;
-            Link currentNode = first.next;
+            Link currentNode;
+
+            if(!isReversed) {
+                currentNode = first.next; //
+            }
+            else{
+                currentNode = first.prev; //
+            }
+
             Link firstNode = first;
             Link lastNode = first;
 
             Link nodes[] = new Link[2];
-            /*nodes[0] = firstNode;
-            nodes[1] = lastNode;*/
 
             while(currentNode != null){
                 if(lastNode.value <= currentNode.value){
                     lastNode = currentNode;
                     nodesCount++;
-                    currentNode = currentNode.next;
+
+                    if(!isReversed) {
+                        currentNode = currentNode.next; //
+                    }
+                    else{
+                        currentNode = currentNode.prev;
+                    }
                 }
                 else{
                     if(nodesCount >= prevNodesCount){
@@ -259,7 +271,13 @@ public class LinkedList {
                     firstNode = currentNode;
                     lastNode = currentNode;
                     nodesCount = 1;
-                    currentNode = currentNode.next;
+
+                    if(!isReversed) {
+                        currentNode = currentNode.next; //
+                    }
+                    else{
+                        currentNode = currentNode.prev;
+                    }
                 }
             }
 
@@ -269,9 +287,6 @@ public class LinkedList {
             }
 
             return nodes;
-        }
-        else{
-            return new Link[]{null, null};
         }
     }
 
@@ -339,9 +354,9 @@ public class LinkedList {
             LL.insertLast(i + 200);
         }
 
-        for(int i = 2; i < 8; i++){
+        /*for(int i = 2; i < 8; i++){
             LL.deleteKey(i);
-        }
+        }*/
 
         LL.insertAfter(800, 0);
         LL.displayForward();
@@ -352,6 +367,17 @@ public class LinkedList {
         while(node != nodes[1].next){
             System.out.print(node.value + " ");
             node = node.next;
+        }
+        System.out.println();
+
+        LL.reverseList();
+
+        nodes = LL.findLongestNondecrasingList();
+        node = nodes[0];
+
+        while(node != nodes[1].prev){
+            System.out.print(node.value + " ");
+            node = node.prev;
         }
     }
 }
