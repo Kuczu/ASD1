@@ -1,7 +1,7 @@
 package pl.kuczu.abstractDataType.linked;
 
 public class Link {
-    int value;
+    int value; // package-private
     Link next;
     Link prev;
 
