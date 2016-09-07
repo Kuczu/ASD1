@@ -13,7 +13,7 @@ public class LinkedQueue { // FIFO
         return (front == null || rear == null);
     }
 
-    public void enQueue(int value){
+    public void enQueue(int value){ //push
         if(isEmpty()){
             front = new Link(value);
             rear = front;
@@ -24,7 +24,7 @@ public class LinkedQueue { // FIFO
         }
     }
 
-    public int deQueue(){
+    public int deQueue(){ // pop
         if(isEmpty()){
             System.out.println("Kolejka jest pusta!");
             return -1; // exception need
