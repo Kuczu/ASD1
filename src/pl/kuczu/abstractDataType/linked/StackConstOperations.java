@@ -7,7 +7,7 @@ public class StackConstOperations {
         this.top = null;
     }
 
-    public void push(int value){ //TODO
+    public void push(int value){
         ExtendedLink newNode = new ExtendedLink(value);
 
         if(top == null){ // empty stack
