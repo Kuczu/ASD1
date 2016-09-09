@@ -1,10 +1,10 @@
 package pl.kuczu.sort;
 
 public class QuickSort {
-    private int array[];
+    private int Array[];
 
     public QuickSort(int[] array) {
-        this.array = array;
+        this.Array = array;
     }
 
     public void quickSortRecursion(int left, int right){
@@ -18,13 +18,15 @@ public class QuickSort {
         quickSortRecursion(q + 1, right);
     }
 
-    private int partition(int left, int right){
+    private int partition(int left, int right){ // Hoare
         int i = left - 1;
         int j = right;
-        int x = array[right];
+        int x = Array[right];
 
         while(true){
-            while(j > left && array[--j] > x);
+            while(Array[++i] < x);
+
+            while(j > left && Array[--j] > x);
 
             if(i >= j){
                 break;
@@ -40,10 +42,10 @@ public class QuickSort {
 
     private int partitionLomuto(int left, int right){
         int i = left - 1;
-        int x = array[right];
+        int x = Array[right];
 
         for(int j = left; j < right; j++) {
-            if(array[j] <= x) {
+            if(Array[j] <= x) {
                 i++;
                 swap(i, j);
             }
@@ -54,8 +56,8 @@ public class QuickSort {
     }
 
     private void swap(int i, int j){
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = array[temp];
+        int temp = Array[i];
+        Array[i] = Array[j];
+        Array[j] = temp;
     }
 }

@@ -40,19 +40,19 @@ public class SimpleArraySorting extends Array {
     }
 
     void insertionSort(){
-        int j;
-        long v;
+        int idx;
+        long tempValue;
 
         for(int k = 1; k < Size; k++){
-            j = k - 1;
-            v = Array[k];
+            idx = k - 1;
+            tempValue = Array[k];
 
-            while(j >= 0 && v < Array[j]){
-                Array[j + 1] = Array[j];
-                j--;
+            while(idx >= 0 && tempValue < Array[idx]){
+                Array[idx + 1] = Array[idx];
+                idx--;
             }
 
-            Array[j + 1] = v;
+            Array[idx + 1] = tempValue;
         }
     }
 }

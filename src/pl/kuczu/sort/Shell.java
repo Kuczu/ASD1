@@ -1,17 +1,17 @@
 package pl.kuczu.sort;
 
 public class Shell {
-    private int array[];
+    private int Array[];
 
     public Shell(int[] array) {
-        this.array = array;
+        this.Array = array;
     }
 
     public void shellSort(){
         int gap = 1;
         int j;
         int gaps;
-        int arrLength = array.length - 1;
+        int arrLength = Array.length - 1;
         int div = arrLength/3;
 
         while(gap <= div){
@@ -20,14 +20,14 @@ public class Shell {
 
         while(gap > 0){
             for(gaps = gap; gaps < arrLength; gaps++){
-                int tempValue = array[gaps];
+                int tempValue = Array[gaps];
                 j = gaps;
 
-                while(j > gap - 1 && array[j - gap] >= tempValue){
-                    array[j] = array[j - gap];
+                while(j > gap - 1 && Array[j - gap] >= tempValue){
+                    Array[j] = Array[j - gap];
                     j = j - gap;
                 }
-                array[j] = tempValue;
+                Array[j] = tempValue;
             }
 
             gap = (gap - 1) / 3;
