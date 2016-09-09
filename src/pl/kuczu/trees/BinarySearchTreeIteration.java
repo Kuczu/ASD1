@@ -1,11 +1,11 @@
 package pl.kuczu.trees;
 
-public class BinarySearchTree {
+public class BinarySearchTreeIteration {
     private Node root;
     private int postIdx;
     private int preIdx;
 
-    public BinarySearchTree() {
+    public BinarySearchTreeIteration() {
         this.root = null;
     }
 
@@ -45,5 +45,19 @@ public class BinarySearchTree {
                 prev.right = newNode;
             }
         }
+    }
+
+    public Node search(int searchValue){
+        Node node = root;
+
+        while(node != null && searchValue != node.info){
+            if(searchValue < node.info){
+                node = node.left;
+            }
+            else{
+                node = node.right;
+            }
+        }
+        return node;
     }
 }
