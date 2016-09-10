@@ -60,4 +60,42 @@ public class BinarySearchTreeIteration {
         }
         return node;
     }
+
+    public Node delete(int deleteValue){
+        //TODO
+        return null;
+    }
+
+    public Node parent(int val){
+        Node node = root;
+
+        if(node.info == val){
+            return null;
+        }
+
+        Node parent = null;
+
+        while(node.info != val){
+            if(node.info > val){ // go left
+                if(node.left != null){
+                    parent = node;
+                    node = node.left;
+                }
+                else{
+                    return null;
+                }
+            }
+            else{
+                if(node.right != null){
+                    parent = node;
+                    node = node.right;
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+
+        return parent;
+    }
 }
