@@ -17,6 +17,10 @@ public class LinkedStack {
         top = newNode;
     }
 
+    public int top(){
+        return top.value;
+    }
+
     public int pop(){
         if(isEmpty()){
             System.out.println("Stos jest pusty!");

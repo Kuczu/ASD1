@@ -37,4 +37,14 @@ public class LinkedQueue { // FIFO
         }
     }
 
+/*    public int first(){
+        if(isEmpty()){
+            System.out.println("Kolejka jest pusta!");
+            return -1; // exception need
+        }
+        else{
+            return front.value;
+        }
+    }*/
+
 }
