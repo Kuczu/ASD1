@@ -98,4 +98,78 @@ public class BinarySearchTreeIteration {
 
         return parent;
     }
+
+    public Node successor(int val){
+        Node node = search(val);
+
+        if(node == null){ // there isn't searched node
+            return node;
+        }
+
+        Node pred = null;
+
+        if(node.right != null){ // node has right son
+            node = node.right;
+
+            while(node.left != null){
+                node = node.left;
+            }
+
+            return node;
+        }
+        else{ // node hasn't right son
+            while(true){
+                pred = parent(node.info); // can return Node or null
+
+                if(pred != null){
+                    if(pred.left == node){
+                        return pred;
+                    }
+                    else{
+                        node = pred;
+                    }
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+    }
+
+    public Node predecessor(int val){
+        Node node = search(val);
+
+        if(node == null){ // there isn't searched node
+            return node;
+        }
+
+        Node pred = null;
+
+        if(node.left != null){ // node has right son
+            node = node.left;
+
+            while(node.right != null){
+                node = node.right;
+            }
+
+            return node;
+        }
+        else{ // node hasn't right son
+            while(true){
+                pred = parent(node.info); // can return Node or null
+
+                if(pred != null){
+                    if(pred.right == node){
+                        return pred;
+                    }
+                    else{
+                        node = pred;
+                    }
+                }
+                else{
+                    return null;
+                }
+            }
+        }
+    }
 }
