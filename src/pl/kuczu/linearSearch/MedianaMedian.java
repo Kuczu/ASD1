@@ -17,10 +17,10 @@ public class MedianaMedian {
         }
 
         int x = ((array.length % 5) < 3 ? 0 : 1);
-        int buffTable[] = new int[array.length / 5  + x];
+        int buffTable[] = new int[array.length / 5 + x];
 
         for(i = 0; i < array.length / 5 + x; i++){
-            buffTable[i] = array[i * 5 + 2 ];
+            buffTable[i] = array[i * 5 + 2];
         }
 
         int medianR = median(buffTable, buffTable.length / 2);
@@ -39,7 +39,6 @@ public class MedianaMedian {
             else{
                 counter3++;
             }
-
         }
 
         if(k <= counter1){
