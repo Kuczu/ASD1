@@ -25,10 +25,10 @@ public class SortedArray {
         Size = size;
         Array = new long[size];
 
-        fillArrayRandomNumbers();
+        fillArrayRandomSortedNumbers();
     }
 
-    public void fillArrayRandomNumbers(){
+    public void fillArrayRandomSortedNumbers(){
         Random rand = new Random();
 
         Array[0] = rand.nextInt(10);
@@ -154,7 +154,7 @@ public class SortedArray {
         return Size - idxExistValLeft;
     }
 
-    void delDup(){
+    public void delDup(){
         if (Array.length < 2){
             return;
         }
@@ -162,10 +162,10 @@ public class SortedArray {
         int j = 0;
         int i = 1;
 
-        while (i < Size) {
-            if (Array[i] == Array[j]) {
+        while(i < Size){
+            if(Array[j] == Array[i]){
                 i++;
-            } else {
+            }else{
                 j++;
                 Array[j] = Array[i];
                 i++;
@@ -177,11 +177,11 @@ public class SortedArray {
         }
     }
 
-    int bin_search(long val){
+    public int bin_search(long val){
         return find_LE(val) - 1;
     }
 
-    int interpol_search(long val){
+    public int interpol_search(long val){
         int low = 0;
         int upp = Size - 1;
         int currentIdx;
@@ -203,7 +203,7 @@ public class SortedArray {
         return -1;
     }
 
-    void printArray(){
+    public void printArray(){
         for(int i = 0; i < Size; i++){
             System.out.print(Array[i] + " ");
         }
