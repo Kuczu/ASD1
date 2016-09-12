@@ -40,7 +40,7 @@ public class MergeSort {
 
         while(i <= center && j <= right){
             if(helpTable[i] <= helpTable[j]){
-                table[q++] = helpTable[j++];
+                table[q++] = helpTable[i++];
             }
             else{
                 table[q++] = helpTable[j++];
@@ -50,6 +50,10 @@ public class MergeSort {
 
         while(i <= center){
             table[q++] = helpTable[i++];
+        }
+
+        while(j <= right){
+            table[q++] = helpTable[j++];
         }
     }
 }
