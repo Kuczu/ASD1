@@ -19,40 +19,41 @@ public class QuickSort {
     }
 
     private int partition(int left, int right){ // Hoare
-        int i = left - 1;
-        int j = right;
-        int x = Array[right];
+        int leftIdx = left - 1;
+        int rightIdx = right;
+        int dividingValue = Array[right];
 
         while(true){
-            while(Array[++i] < x);
+            while(Array[++leftIdx] < dividingValue);
 
-            while(j > left && Array[--j] > x);
+            while(rightIdx > left && Array[--rightIdx] > dividingValue);
 
-            if(i >= j){
+            if(leftIdx >= rightIdx){
                 break;
             }
             else{
-                swap(i, j);
+                swap(leftIdx, rightIdx);
             }
         }
 
-        swap(i, right);
-        return i;
+        swap(leftIdx, right);
+        return leftIdx;
     }
 
     private int partitionLomuto(int left, int right){
         int i = left - 1;
-        int x = Array[right];
+        int dividingValue = Array[right];
 
-        for(int j = left; j < right; j++) {
-            if(Array[j] <= x) {
+        for(int j = left; j < right; j++){
+            if(Array[j] <= dividingValue){
                 i++;
                 swap(i, j);
             }
         }
-            swap(i + 1, right);
 
-            return ++i;
+        swap(i + 1, right);
+
+        return ++i;
     }
 
     private void swap(int i, int j){
