@@ -37,6 +37,30 @@ public class BinarySearchTreeRecursion {
         return node;
     }
 
+    public void insertBetter(Node node, int val){ // less assigning values to variables, brutally stolen from Wojtek - thanks :P
+        if(root == null){
+            root = new Node(val);
+        }
+        else{
+            if(node.info > val){
+                if(node.left == null){
+                    node.left = new Node(val);
+                }
+                else{
+                    insertBetter(node.left, val);
+                }
+            }
+            else{
+                if(node.right == null){
+                    node.right = new Node(val);
+                }
+                else{
+                    insertBetter(node.right, val);
+                }
+            }
+        }
+    }
+
     public Node search(Node node, int searchVal){
         if(node.info == searchVal){
             return node;
