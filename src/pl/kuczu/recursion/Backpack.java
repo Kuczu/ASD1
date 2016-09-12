@@ -33,7 +33,6 @@ public class Backpack {
 
         if(sum == 0 || sum > 0 && solveBackpackProblem(itemNumber + 1, sum)){
             answer[count] = data[itemNumber];
-            //end = true;
             count++;
             return true;
         }
