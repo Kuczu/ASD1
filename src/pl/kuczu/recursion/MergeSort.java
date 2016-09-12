@@ -1,7 +1,6 @@
 package pl.kuczu.recursion;
 
 public class MergeSort {
-    private long helpTable[];
     private int numbOfInversion;
     private long table[];
 
@@ -26,34 +25,32 @@ public class MergeSort {
     }
 
     private void merge(int left, int right, int center){
-        int i;
-        int j;
-        int q;
+        long helpTable[] = new long[right - left + 1];
 
-        for(i = left; i <= right; i++){
+        for(int i = left; i <= right; i++){
             helpTable[i] = table[i];
         }
 
-        i = left;
-        j = center + 1;
-        q = left;
+        int leftTableIdx = left;
+        int rightTableIdx = center + 1;
+        int firstFreeIdx = left;
 
-        while(i <= center && j <= right){
-            if(helpTable[i] <= helpTable[j]){
-                table[q++] = helpTable[i++];
+        while(leftTableIdx <= center && rightTableIdx <= right){
+            if(helpTable[leftTableIdx] <= helpTable[rightTableIdx]){
+                table[firstFreeIdx++] = helpTable[leftTableIdx++];
             }
             else{
-                table[q++] = helpTable[j++];
-                numbOfInversion = numbOfInversion + center - i + 1;
+                table[firstFreeIdx++] = helpTable[rightTableIdx++];
+                numbOfInversion = numbOfInversion + center - leftTableIdx + 1;
             }
         }
 
-        while(i <= center){
-            table[q++] = helpTable[i++];
+        while(leftTableIdx <= center){
+            table[firstFreeIdx++] = helpTable[leftTableIdx++];
         }
 
-        while(j <= right){
-            table[q++] = helpTable[j++];
+        while(rightTableIdx <= right){
+            table[firstFreeIdx++] = helpTable[rightTableIdx++];
         }
     }
 }
