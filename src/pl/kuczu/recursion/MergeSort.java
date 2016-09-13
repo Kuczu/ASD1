@@ -2,21 +2,38 @@ package pl.kuczu.recursion;
 
 import java.util.Random;
 
+/**
+ * W klasie zaimplementowana została rekurencyjna funkcja sortująca merge sort
+ */
 public class MergeSort {
     private int numbOfInversion;
     private int array[];
     private int helpTable[];
 
+    /**
+     * Kostruktor
+     * @param array tablica na której będą wykonywane operacje
+     */
     public MergeSort(int[] array) {
         this.array = array;
         helpTable = new int[array.length];
         numbOfInversion = 0;
     }
 
+    /**
+     * Funkcja zwraca liczbę inwersji wykonanych podczas mergesort
+     * @return liczba inwersji wykonanych podczas mergesort
+     */
     public int getNumbOfInversion() {
         return numbOfInversion;
     }
 
+    /**
+     * Złożoność czasowa O(n log2(n)), pamięciowa 2n
+     * Funkcja dzieli tablice podaną w konstruktorze na mniejsze (rekurencyjnie), następnie je łączy ze sobą za pomocą funkcji {@link MergeSort#merge(int, int, int)}
+     * @param left lewy indeks tablicy od którego funkcja ma sortować
+     * @param right prawy indeks tablicy - jej koniec do którego funkcja ma sortować
+     */
     public void mergeSort(int left, int right){
         int center;
 
@@ -28,6 +45,14 @@ public class MergeSort {
         }
     }
 
+    /**
+     * Złożoność czasowa O(n)
+     * Funkcja dzieli tablice helpTable na dwie - left i center oraz (center + 1) i right,
+     * następnie przepisuje wartości z tej tablicy rosnąco na analogiczne miejsca tablicy wynikowej array
+     * @param left
+     * @param right
+     * @param center
+     */
     private void merge(int left, int right, int center){
         for(int i = left; i <= right; i++){
             helpTable[i] = array[i];
