@@ -64,12 +64,12 @@ public class MaxHeap extends Heap{
     public void heapSort(){
         for(int k = (emptyIdx - 1) / 2; k >= 0; k--){
             downheap(k);
-        } // heapArray is partly sorted descending
+        } // heapArray is partly sorted ascending
 
         while(emptyIdx > 0){
             swap(0, emptyIdx - 1);
             emptyIdx--;
             downheap(0);
-        } //heapArray is sorted ascending
+        } //heapArray is sorted descending
     }
 }

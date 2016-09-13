@@ -6,6 +6,7 @@ public class MinHeap extends Heap{
         emptyIdx = 0;
     }
 
+    //log2(n)
     public void upheap(int idxToUp){
         int parent = (idxToUp - 1) / 2;
         int valToUp = heapArray[idxToUp];
@@ -19,6 +20,7 @@ public class MinHeap extends Heap{
         heapArray[idxToUp] = valToUp;
     }
 
+    //log2(n)
     public void downheap(int idxToDown){
         int child;
         int valToDown = heapArray[idxToDown];
@@ -41,10 +43,12 @@ public class MinHeap extends Heap{
         heapArray[idxToDown] = valToDown;
     }
 
+    // O(1)
     public int getMin(){
         return heapArray[0];
     }
 
+    //log2(n)
     public int deleteMin(){ // need condition for checking if the heap is empty
         int min = heapArray[0];
 
@@ -56,10 +60,11 @@ public class MinHeap extends Heap{
         return min;
     }
 
+    //n log2(n)
     public void heapSort(){
         for(int k = (emptyIdx - 1) / 2; k >= 0; k--){
             downheap(k);
-        } // heapArray is sorted descending
+        } // heapArray is partly sorted descending
 
         while(emptyIdx > 0){
             swap(0, emptyIdx - 1);
