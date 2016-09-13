@@ -1,9 +1,11 @@
 package pl.kuczu.sort;
 
+import java.util.Random;
+
 public class QuickSortNonrecursion {
     private int array[];
 
-    public QuickSortNonrecursion(int[] array) {
+    public QuickSortNonrecursion(int[] array){
         this.array = array;
     }
 
@@ -17,10 +19,11 @@ public class QuickSortNonrecursion {
         while (true) {
             i--;
 
-            while (left < curr) {
+            while(left < curr){
                 currTemp = partition(left, curr);
 
                 array[curr] = -array[curr];
+                //array[currTemp] = -array[currTemp];
                 curr = currTemp - 1;
 
                 i++;
@@ -47,7 +50,7 @@ public class QuickSortNonrecursion {
         return array.length - 1;
     }
 
-    private int partition(int left, int right) {
+    private int partition(int left, int right){
         int pivot = array[(left + right) / 2];
 
         while(left <= right){
@@ -72,10 +75,36 @@ public class QuickSortNonrecursion {
         return left;
     }
 
-    public void swap(int i, int j){
+    private void swap(int i, int j){
         int buff = array[i];
         array[i] = array[j];
         array[j] = buff;
+    }
+
+    public void printArray(){
+        for(int i = 0; i < array.length; i++){
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void fillArrayRandomNumbers(int array[]){
+        Random rand = new Random();
+
+        for(int i = 0; i < array.length; i++){
+            array[i] = rand.nextInt(Integer.SIZE - 1);
+        }
+    }
+
+    public static void main(String args[]){
+        int arr[] = new int[10];
+        fillArrayRandomNumbers(arr);
+
+        QuickSortNonrecursion qs = new QuickSortNonrecursion(arr);
+
+        qs.printArray();
+        qs.quickSort();
+        qs.printArray();
     }
 
 
