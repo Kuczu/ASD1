@@ -49,9 +49,9 @@ public class MergeSort {
      * Złożoność czasowa O(n)
      * Funkcja dzieli tablice helpTable na dwie - left i center oraz (center + 1) i right,
      * następnie przepisuje wartości z tej tablicy rosnąco na analogiczne miejsca tablicy wynikowej array
-     * @param left
-     * @param right
-     * @param center
+     * @param left lewy zakres tablic array i helpTable
+     * @param right prawy zakres tablic array i helpTable
+     * @param center indeks środka tablicy helpTable, on dzieli tablice na dwie części
      */
     private void merge(int left, int right, int center){
         for(int i = left; i <= right; i++){
