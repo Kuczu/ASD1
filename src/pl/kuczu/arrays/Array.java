@@ -98,8 +98,8 @@ public class Array {
     /**
      * Funkcja usuwa duplikaty z tablicy, złożoność czasowa O(n^2)
      * Funkcja działa tak, że dla każdego elementu z tablicy (pierwsza pętla) sprawdza kolejne liczby aż do końca tablicy (druga pętla),
-     * po napodkaniu duplikatu przepisuje ostatni element (jeśli nie jest duplikatem) na miejsce duplikatu,
-     * natomiast jeśli ostatni element jest także duplikatem, tablica jest pomniejszana tak długo aż nie napodka na liczbę nie będącą duplikatem
+     * po napotkaniu duplikatu przepisuje ostatni element (jeśli nie jest duplikatem) na miejsce duplikatu,
+     * natomiast jeśli ostatni element jest także duplikatem, tablica jest pomniejszana tak długo aż nie napotka na liczbę nie będącą duplikatem
      */
     public void del_Dupl(){
         for(int currPosition = 0; currPosition <= this.currPosition; currPosition++){

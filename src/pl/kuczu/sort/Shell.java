@@ -12,7 +12,7 @@ public class Shell {
         int j;
         int gaps;
         int arrLength = Array.length - 1;
-        int div = arrLength/3;
+        int div = arrLength / 3;
 
         while(gap <= div){
             gap = gap * 3 + 1;
