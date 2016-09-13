@@ -6,6 +6,7 @@ public class MaxHeap extends Heap{
         emptyIdx = 0;
     }
 
+    //log2(n)
     public void upheap(int idxToUp){
         int parent = (idxToUp - 1) / 2;
         int valToUp = heapArray[idxToUp];
@@ -19,6 +20,7 @@ public class MaxHeap extends Heap{
         heapArray[idxToUp] = valToUp;
     }
 
+    //log2(n)
     public void downheap(int idxToDown){
         int child;
         int valToDown = heapArray[idxToDown];
@@ -41,10 +43,12 @@ public class MaxHeap extends Heap{
         heapArray[idxToDown] = valToDown;
     }
 
+    //O(1)
     public int getMax(){
         return heapArray[0];
     }
 
+    //log2(n)
     public int deleteMax(){ // need condition for checking if the heap is empty
         int max = heapArray[0];
 
@@ -56,10 +60,11 @@ public class MaxHeap extends Heap{
         return max;
     }
 
+    //n log2(n)
     public void heapSort(){
         for(int k = (emptyIdx - 1) / 2; k >= 0; k--){
             downheap(k);
-        } // heapArray is sorted descending
+        } // heapArray is partly sorted descending
 
         while(emptyIdx > 0){
             swap(0, emptyIdx - 1);
